@@ -7,7 +7,7 @@ function Productitem({ id, image, name, price }) {
   return (
     <div>
       <Link to={`/product/${id}`} className="text-gray-700 cursor-pointer">
-        <div className="overflow-hiddend">
+        <div className="overflow-hidden">
           <img
             src={image[0]}
             alt=""
