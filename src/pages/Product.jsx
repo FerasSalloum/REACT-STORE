@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/shopContext";
 import { Fassets } from "../assets/frontend_assets/assets";
 import RelatedProductes from "../components/relatedProductes";
-
 const Product = () => {
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addTocart } = useContext(ShopContext);
   const { productId } = useParams();
   const [productsData, setProductsData] = useState();
   const [image, setImage] = useState("");
@@ -78,7 +77,10 @@ const Product = () => {
               ))}
             </div>
           </div>
-          <button className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700">
+          <button
+            onClick={() => addTocart(productsData._id, size)}
+            className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
+          >
             ADD TO CART
           </button>
           <hr className="mt-8 sm:w-4/5" />
@@ -95,13 +97,26 @@ const Product = () => {
           <b className="border px-5 py-3 text-sm">description</b>
           <p className="border px-5 py-3 txt-sm">Reviews (122)</p>
         </div>
-        <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500"> 
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil reprehenderit fugiat ipsum aperiam voluptas! Asperiores ex distinctio cum optio sapiente, harum, animi obcaecati illum fugiat, veritatis numquam sunt iure ea?</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil reprehenderit fugiat ipsum aperiam voluptas! Asperiores ex distinctio cum optio sapiente, harum, animi obcaecati illum fugiat, veritatis numquam sunt iure ea?</p>
+        <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+            reprehenderit fugiat ipsum aperiam voluptas! Asperiores ex
+            distinctio cum optio sapiente, harum, animi obcaecati illum fugiat,
+            veritatis numquam sunt iure ea?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+            reprehenderit fugiat ipsum aperiam voluptas! Asperiores ex
+            distinctio cum optio sapiente, harum, animi obcaecati illum fugiat,
+            veritatis numquam sunt iure ea?
+          </p>
         </div>
       </div>
       {/* related products */}
-      <RelatedProductes category={productsData.category} subCategory={productsData.subCategory}/>
+      <RelatedProductes
+        category={productsData.category}
+        subCategory={productsData.subCategory}
+      />
     </div>
   ) : (
     <div className="opacity-0"></div>
