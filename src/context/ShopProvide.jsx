@@ -2,6 +2,7 @@ import { useState } from "react";
 import { products } from "../assets/frontend_assets/assets";
 import { ShopContext } from "./shopContext";
 import { Bounce, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const ShopContextProvider = (props) => {
   const currency = "$";
@@ -9,6 +10,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItem, setCartItem] = useState({});
+  const navigatev = useNavigate()
 
   const addTocart = async (itemId, size) => {
     if (!size) {
@@ -52,9 +54,7 @@ const ShopContextProvider = (props) => {
   const getCartCount = () => {
     let totalCount = 0;
     for (const items in cartItem) {
-      console.log("cartItem[items]:  ", cartItem[items]);
       for (const item in cartItem[items]) {
-        console.log("cartItem[items][item]:  ", cartItem[items][item]);
         try {
           if (cartItem[items][item] > 0) {
             totalCount += cartItem[items][item];
@@ -64,12 +64,30 @@ const ShopContextProvider = (props) => {
         }
       }
     }
-    console.log("cartItem:  ", cartItem);
-    console.log("=".repeat(40));
-
     return totalCount;
   };
-
+  const getTotalAmount = () => {
+    let totalAmount = 0;
+    for (const items in cartItem) {
+      let itemInfo = products.find((product) => product._id == items);
+      for (const item in cartItem[items]) {
+        try {
+          if (cartItem[items][item] > 0) {
+            totalAmount += itemInfo.price * cartItem[items][item];
+            
+          }
+        } catch (error) {
+          return error;
+        }
+      }
+    }
+    return totalAmount;
+  };
+  const updateQuntity = async (itemId, size, quantity) => {
+    let cartData = structuredClone(cartItem);
+    cartData[itemId][size] = quantity;
+    setCartItem(cartData);
+  };
   const value = {
     products,
     currency,
@@ -81,6 +99,9 @@ const ShopContextProvider = (props) => {
     addTocart,
     cartItem,
     getCartCount,
+    updateQuntity,
+    getTotalAmount,
+    navigatev,
   };
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
