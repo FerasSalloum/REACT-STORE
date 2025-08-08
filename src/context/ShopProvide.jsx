@@ -10,7 +10,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [cartItem, setCartItem] = useState({});
-  const navigatev = useNavigate()
+  const navigate = useNavigate()
 
   const addTocart = async (itemId, size) => {
     if (!size) {
@@ -101,7 +101,7 @@ const ShopContextProvider = (props) => {
     getCartCount,
     updateQuntity,
     getTotalAmount,
-    navigatev,
+    navigate,
   };
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>

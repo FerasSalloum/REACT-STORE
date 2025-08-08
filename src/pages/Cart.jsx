@@ -5,7 +5,7 @@ import { Fassets } from "../assets/frontend_assets/assets";
 import CatTitle from "../components/catTitle";
 
 function Cart() {
-  const { products, currency, cartItem, updateQuntity,navigatev } =
+  const { products, currency, cartItem, updateQuntity,navigate } =
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
   useEffect(() => {
@@ -88,7 +88,7 @@ function Cart() {
         <div className="w-full sm:w-[450px]">
           <CatTitle />
           <div className="w-full text-end">
-            <button onClick={()=>navigatev("./place-order")} className="bg-black text-white text-sm my-8 py-4 px-6">PROCEED TO CHEKOUT</button>
+            <button onClick={()=>navigate("./place-order")} className="bg-black text-white text-sm my-8 py-4 px-6">PROCEED TO CHEKOUT</button>
           </div>
         </div>
       </div>
