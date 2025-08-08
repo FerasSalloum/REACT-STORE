@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/shopContext";
 import Title from "../components/Title";
 import { Fassets } from "../assets/frontend_assets/assets";
-import CatTitle from "../components/catTitle";
+import CatTitle from "../components/CatTitle";
 
 function Cart() {
   const { products, currency, cartItem, updateQuntity,navigate } =

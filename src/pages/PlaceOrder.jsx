@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Title from "../components/Title";
-import CatTitle from "../components/catTitle";
+import CatTitle from "../components/CatTitle";
 import { Fassets } from "../assets/frontend_assets/assets";
 import { ShopContext } from "../context/shopContext";
 

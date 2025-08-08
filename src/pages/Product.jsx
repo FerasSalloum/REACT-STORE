@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/shopContext";
 import { Fassets } from "../assets/frontend_assets/assets";
-import RelatedProductes from "../components/relatedProductes";
+import RelatedProductes from "../components/RelatedProductes";
 const Product = () => {
   const { products, currency, addTocart } = useContext(ShopContext);
   const { productId } = useParams();
